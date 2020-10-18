@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { Route, BrowserRouter as Router, Link } from "react-router-dom";
+
 // Loading page
 import { WaveLoading } from "react-loadingg";
 
@@ -24,7 +26,6 @@ import {
   createMuiTheme,
   makeStyles,
 } from "@material-ui/core/styles";
-import { Route, BrowserRouter as Router, Link } from "react-router-dom";
 
 // Pages
 import Home from "./pages/Home";
@@ -37,37 +38,39 @@ import ReactModalLogin from "react-modal-login";
 
 // Context
 import { useStateValue } from "./context/StateProvider";
-import { ACTION_TYPE } from "./reducers/reducer";
-
-// Themes
-import theme, { lightTheme, darkTheme } from "./assets/styles/theme";
-import { purple, teal } from "@material-ui/core/colors";
 
 // Styles
-import { useStyles } from "./assets/styles/style";
+import { useStyles, theme } from "./assets/styles/style";
+import { ACTION_TYPE } from "./reducers/reducer";
+import { purple } from "@material-ui/core/colors";
 
 function App() {
   const [state, dispatch] = useStateValue();
   const classes = useStyles();
+
+  useEffect(() => {
+    document.title = "Codify";
+    setTimeout(() => {
+      dispatch({ type: ACTION_TYPE.FINISH_LOADING });
+    }, 1500);
+  }, []);
 
   return (
     <ThemeProvider theme={theme(state.isDarkMode)}>
       <Paper style={{ height: "100vh" }}>
         <div className="app">
           {state.isLoading ? (
-            <WaveLoading color="green" size="large" />
+            <WaveLoading
+              color={state.isDarkMode ? purple[500] : purple[200]}
+              size="large"
+            />
           ) : (
             <Router>
               <Grid width direction="row" justify="center" alignItems="center">
                 <Navbar />
                 {/* Body */}
                 {/* <Grid>
-                    <Button variant="contained" color="primary">
-                      Primary
-                    </Button>
-                    <Button variant="contained" color="secondary">
-                      Secondary
-                    </Button>
+                  
                     <Button variant="contained" color="default">
                       Success
                     </Button>

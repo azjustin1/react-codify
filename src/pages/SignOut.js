@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ReactModalLogin from "react-modal-login";
-import { Modal } from "@material-ui/core";
+import { Button, Modal } from "@material-ui/core";
 import { facebookConfig, googleConfig } from "../configs/social-config";
 import { useStateValue } from "../context/StateProvider";
 import { ACTION_TYPE } from "../reducers/reducer";
@@ -26,7 +26,12 @@ function SignOut() {
       {/* <button color="primary" onClick={handleOpen}>
         Click open Modal
       </button> */}
-
+      <Button variant="contained" color="primary">
+        Primary
+      </Button>
+      <Button variant="contained" color="secondary">
+        Secondary
+      </Button>
       <Modal open={isOpen} onClose={handleClose}>
         <div
           style={{

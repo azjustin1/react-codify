@@ -35,11 +35,11 @@ const useStyles = makeStyles((theme) => ({
 function Navbar() {
   const [state, dispatch] = useStateValue();
   const classes = useStyles();
-  const [darkMode, setDarkMode] = useState(false);
+  const [isDarkMode, setDarkMode] = useState(state.isDarkMode);
 
   const changeDarkMode = () => {
     setDarkMode((prevMode) => !prevMode);
-    dispatch({ type: ACTION_TYPE.SWITCH_DARK_MODE, darkMode: darkMode });
+    dispatch({ type: ACTION_TYPE.SWITCH_DARK_MODE, isDarkMode: isDarkMode });
   };
 
   return (
@@ -60,14 +60,19 @@ function Navbar() {
               control={
                 <Switch
                   color="secondary"
-                  checked={darkMode}
+                  checked={isDarkMode}
                   onChange={changeDarkMode}
                 />
               }
               label="Dark Mode"
             />
           </FormGroup>
-          <Button color="inherit">Login</Button>
+          <Button variant="contained" color="primary">
+            Sign In
+          </Button>
+          <Button variant="contained" color="default">
+            Sign Up
+          </Button>
         </Toolbar>
       </AppBar>
     </div>
