@@ -1,7 +1,7 @@
 export const initialState = {
   isSignIn: false,
-  isLoading: false,
-  isDarkMode: false,
+  isLoading: true,
+  isDarkMode: true,
 };
 
 export const ACTION_TYPE = {
@@ -12,7 +12,6 @@ export const ACTION_TYPE = {
 };
 
 const reducer = (state, action) => {
-  console.log(action);
   switch (action.type) {
     case ACTION_TYPE.LOG_IN:
       return {
@@ -32,7 +31,7 @@ const reducer = (state, action) => {
     case ACTION_TYPE.SWITCH_DARK_MODE:
       return {
         ...state,
-        isDarkMode: !action.darkMode,
+        isDarkMode: !action.isDarkMode,
       };
   }
 };

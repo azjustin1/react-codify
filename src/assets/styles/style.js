@@ -1,4 +1,5 @@
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, createMuiTheme } from "@material-ui/core/styles";
+import { white, purple, teal, blue } from "@material-ui/core/colors";
 
 export const useStyles = makeStyles({
   // root: {
@@ -11,3 +12,13 @@ export const useStyles = makeStyles({
   //   padding: "0 30px",
   // },
 });
+
+export const theme = (isDarkMode) => {
+  return createMuiTheme({
+    palette: {
+      type: isDarkMode ? "dark" : "light",
+      primary: { main: isDarkMode ? purple[500] : purple[200] },
+      secondary: { main: isDarkMode ? teal[500] : teal[200] },
+    },
+  });
+};

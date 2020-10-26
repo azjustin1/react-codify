@@ -1,7 +1,20 @@
-import axios from 'axios'
+import axios from "axios";
+
+const config = {
+  Accept: "application/json",
+  "Content-Type": "application/json",
+};
 
 const instance = axios.create({
-    baseURL: 'https://gymmerify-nodejs-api.herokuapp.com',
-})
+  baseURL: "http://localhost:9000",
+  config: config,
+});
 
-export default instance
+export const setClientToken = (token) => {
+  instance.interceptors.request.use((config) => {
+    config.headers.Authorization = `Bearer ${token}`;
+    return config;
+  });
+};
+
+export default instance;

@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import ReactModalLogin from "react-modal-login";
-import { Modal } from "@material-ui/core";
+import { Button, Modal } from "@material-ui/core";
 import { facebookConfig, googleConfig } from "../configs/social-config";
 import { useStateValue } from "../context/StateProvider";
 import { ACTION_TYPE } from "../reducers/reducer";
+
+import AceTextEditor from "../components/AceEditor";
+
 function SignOut() {
   const [isOpen, setOpen] = useState(false);
 
@@ -26,7 +29,12 @@ function SignOut() {
       {/* <button color="primary" onClick={handleOpen}>
         Click open Modal
       </button> */}
-
+      <Button variant="contained" color="primary">
+        Primary
+      </Button>
+      <Button variant="contained" color="secondary">
+        Secondary
+      </Button>
       <Modal open={isOpen} onClose={handleClose}>
         <div
           style={{
@@ -37,6 +45,7 @@ function SignOut() {
           This is modal content
         </div>
       </Modal>
+      <AceTextEditor />
       {/* <form onSubmit={handleSubmit}>
         <label htmlFor="">Email</label>
         <input value={data.email} onChange={e => setEmail(e.target.value)} />
